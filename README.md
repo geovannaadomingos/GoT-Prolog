@@ -3,31 +3,32 @@
 
 ### O projeto foi construído a partir deste [artigo](https://medium.freecodecamp.org/how-to-learn-prolog-by-watching-game-of-thrones-4852ea960017) e de deste [repositório similar](https://github.com/rachelwiles/GoT-Check)
 
-#### Para rodar os comandos, utilize o SWI-Prolog. 
-GoTCheck.pl analyses facts about parents, gender, and dead/alive status of Game of Thrones characters in all major houses, and implements rules. Queries call upon these rules, which use recursion and lists to sift through the database, analysing family trees and returning information.
 
-**Queries include the following:**
-* Relationship - _Find the relationship between X and Y_
+##### Obs.: Para rodar o projeto, utilize o SWI-Prolog. 
+
+**As chaves disponíveis para uso e suas respectivas funcionalidades são:**
+* Relationship - _Encontre a relação entre X e Y_
   ```prolog
   ?-relationship(X, Y).
   ```
-* Parents - _X is the parent of Y. Can also query mother/father_
+* Parents - _
+X é o pai de Y. Também pode consultar mãe/pai_
   ```prolog
   ?-parent(X, Y). 
   ```
-  _List all parents of a character X_
+  _Listar todos os pais de um personagem X_
   ```prolog
   ?-parents(X, Parents).
   ```
-* Children - _X is the child of Y. Can also query son/daughter_
+* Children - _X é filho de Y. Também pode consultar filho/filha_
   ```prolog
   ?-child(X, Y).
   ```
-  _List all children of a character X_
+  _Listar todos os filhos de um caractere X_
   ```prolog
   ?-children(X, Children).
   ```
-* Sibling - _X the sibling of Y. Can also query brother/sister_
+* Sibling - _X irmão de Y. Também pode consultar irmão/irmã_
   ```prolog
   ?-sibling(X, Y).
   ```
@@ -35,26 +36,26 @@ GoTCheck.pl analyses facts about parents, gender, and dead/alive status of Game 
   ```prolog
   ?-list_siblings(X, Siblings).
   ```
-* Aunt, Uncle, Neice, Nephew - _Can all be queried like the above, where X is the relation to Y_
+* Aunt, Uncle, Neice, Nephew - _Todos podem ser consultados como acima, onde X é a relação com Y_
 
-* Lineage - _X is the ancestor / descendant of a list of characters_
+* Lineage - _X é o ancestral/descendente de uma lista de caracteres_
   ```prolog
   ?-ancestors(X, Ancestor_of).
   ?-decendants(X, Descendant_of).
   ```
-* Alive/Dead - _Find out if a character is still alive_
+* Alive/Dead - _Descubra se um personagem ainda está vivo_
   ```prolog
   ?-alive_or_dead(X).
   ```
-* Full Profile - _Gathers all relationships and status of a character_
+* Full Profile - _Reúne todos os relacionamentos e status de um personagem_
   ```prolog
   ?-tell_me_about(X).
   ```
-* Rightful Heir - _Find the rightful heir to the iron throne_
+* Rightful Heir - _Encontre o herdeiro legítimo do trono de ferro_
   ```prolog
   ?-rightful_heir(X).
   ```
-* Aryas List - _See Aryas progress through her list_
+* Aryas List - _Veja o progresso de Aryas em sua lista_
   ```prolog
   ?-aryas_list
   ```
