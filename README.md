@@ -1,5 +1,5 @@
 # :crossed_swords: GoT-Prolog
-## Utilizando a linguagem de programação Prolog para construir um banco de dados dos personagens da série Game of Thrones
+## Utilizando a linguagem de programação Prolog para construir e manipular um banco de dados dos personagens da série Game of Thrones
 
 ### O projeto foi construído a partir deste [artigo](https://medium.freecodecamp.org/how-to-learn-prolog-by-watching-game-of-thrones-4852ea960017) e de deste [repositório similar](https://github.com/rachelwiles/GoT-Check)
 
