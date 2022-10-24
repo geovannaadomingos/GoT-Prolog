@@ -32,7 +32,7 @@ X é o pai de Y. Também pode consultar mãe/pai_
   ```prolog
   ?-sibling(X, Y).
   ```
-  _List all siblings of a character X_
+  _Listar todos os irmãos de um personagem X_
   ```prolog
   ?-list_siblings(X, Siblings).
   ```
