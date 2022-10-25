@@ -60,6 +60,10 @@ X é o pai de Y. Também pode consultar mãe/pai_
   ```prolog
   ?-aryas_list
   ```
+* House Of - _Retorna a casa Y de um personagem X_
+  ```prolog
+  ?-house_of("fullname",Y).
+  ```
   
 
 ## Os autores do projeto são:
