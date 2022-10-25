@@ -614,6 +614,6 @@ return_house(Lastname, Y) :-
     Lastname = "estermont",
     Y = "Baratheon",
     !;
-    Y = "Nenhum casa correspondente",
+    Y = "Nenhuma casa correspondente",
     !.
 
