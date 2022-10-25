@@ -536,3 +536,82 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 	parent(robert_baratheon, X),
 	status(X, alive).
 
+
+%_______________________________________________________________________________________________________________________
+% RETORNANDO A CASA DE UM PERSONAGEM X A PARTIR DO SEU SOBRENOME:
+
+house_of(X,Y) :-
+    X = "gendry",
+    Y = "Baratheon",
+    !;
+    X = "unknown_mother_stark",
+    Y = "Stark",
+    !;
+    X = "unknown_mother_targaryen",
+    Y = "Targaryen",
+    !;
+    X = "unknown_mother_martell",
+    Y = "Martell",
+    !;
+    X = "four_unknown_martells",
+    Y = "Martell",
+    !;
+    X = "unknown_mother_greyjoy",
+    Y = "Greyjoy",
+    !;
+    X = "unknown_father_greyjoy",
+    Y = "Greyjoy",
+    !;
+    X = "unknown_mother_lannister",
+    Y = "Lannister",
+    !;
+    return_lastname(X, Name, Lastname),
+    return_house(Lastname, Y). 
+
+return_lastname(String, Name, Lastname) :-
+    sub_string(String, Before, _, After, "_"),
+    !,
+    sub_atom(String, 0, Before, _, Name),
+    sub_string(String, _, After, 0, Lastname).
+
+return_house(Lastname, Y) :-
+    Lastname = "stark",
+    Y = "Stark",
+    !;
+    Lastname = "snow",
+    Y = "Stark",
+    !;
+    Lastname = "tyrell",
+    Y = "Tyrell",
+    !;
+    Lastname = "hightower",
+    Y = "Tyrell",
+    !;
+    Lastname = "martell",
+    Y = "Martell",
+    !;
+    Lastname = "sand",
+    Y = "Martell",
+    !;
+    Lastname = "targaryen",
+    Y = "Targaryen",
+    !;
+    Lastname = "snow",
+    Y = "Targaryen",
+    !;
+    Lastname = "greyjoy",
+    Y = "Greyjoy",
+    !;
+    Lastname = "harlaw",
+    Y = "Greyjoy",
+    !;
+    Lastname = "lannister",
+    Y = "Lannister",
+    !;
+    Lastname = "baratheon",
+    Y = "Baratheon",
+    !;
+    Lastname = "estermont",
+    Y = "Baratheon",
+    !.
+
