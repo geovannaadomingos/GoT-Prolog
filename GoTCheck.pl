@@ -542,33 +542,32 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 
 house_of(X,Y) :-
     X = "gendry",
-    string_to_atom("baratheon",Y),
+    Y = "baratheon",
     !;
     X = "unknown_mother_stark",
-    string_to_atom("stark",Y),
+    Y = "stark",
     !;
     X = "unknown_mother_targaryen",
-    string_to_atom("targaryen",Y),
+    Y = "targaryen",
     !;
     X = "unknown_mother_martell",
-    string_to_atom("martell",Y),
+    Y = "martell",
     !;
     X = "four_unknown_martells",
-    string_to_atom("martell",Y),
+    Y = "martell",
     !;
     X = "unknown_mother_greyjoy",
-    string_to_atom("greyjoy",Y),
+    Y = "greyjoy",
     !;
     X = "unknown_father_greyjoy",
-    string_to_atom("greyjoy",Y),
+    Y = "greyjoy",
     !;
     X = "unknown_mother_lannister",
-    string_to_atom("lannister",Y),
+    Y = "lannister",
     !;
     return_lastname(X, Name, Lastname),
     return_house(Lastname, Y). 
-    
-%--------Retorna o sobrenome do personagem ------------
+
 return_lastname(String, Name, Lastname) :-
     sub_string(String, Before, _, After, "_"),
     !,
@@ -577,43 +576,43 @@ return_lastname(String, Name, Lastname) :-
 
 return_house(Lastname, Y) :-
     Lastname = "stark",
-    string_to_atom("stark",Y),
+    Y = "stark",
     !;
     Lastname = "snow",
-    string_to_atom("stark",Y),
+    Y = "stark",
     !;
     Lastname = "tyrell",
-    string_to_atom("tyrell",Y),
+    Y = "tyrell",
     !;
     Lastname = "hightower",
-    string_to_atom("tyrell",Y),
+    Y = "tyrell",
     !;
     Lastname = "martell",
-    string_to_atom("martell",Y),
+    Y = "martell",
     !;
     Lastname = "sand",
-    string_to_atom("sand",Y),
+    Y = "martell",
     !;
     Lastname = "targaryen",
-    string_to_atom("targaryen",Y),
+    Y = "targaryen",
     !;
     Lastname = "snow",
-    string_to_atom("targaryen",Y),
+    Y = "targaryen",
     !;
     Lastname = "greyjoy",
-    string_to_atom("greyjoy",Y),
+    Y = "greyjoy",
     !;
     Lastname = "harlaw",
-    string_to_atom("greyjoy",Y),
+    Y = "greyjoy",
     !;
     Lastname = "lannister",
-    string_to_atom("lannister",Y),
+    Y = "lannister",
     !;
     Lastname = "baratheon",
-    string_to_atom("baratheon",Y),
+    Y = "baratheon",
     !;
     Lastname = "estermont",
-    string_to_atom("baratheon",Y),
+    Y = "baratheon",
     !;
     Y = "Nenhuma casa correspondente",
     !.
