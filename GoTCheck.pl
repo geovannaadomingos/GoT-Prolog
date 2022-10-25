@@ -616,3 +616,15 @@ return_house(Lastname, Y) :-
     !;
     Y = "Nenhuma casa correspondente",
     !.
+    
+   
+   
+%______________________________________________________________________
+% RETORNANDO LISTA COM TODOS OS PERSONAGENS DA SÉRIE 
+
+return_people(People) :-
+    findall(X, (female(X); male(X)), People).
+
+
+
+
