@@ -60,3 +60,6 @@ X é o pai de Y. Também pode consultar mãe/pai_
   ```prolog
   ?-aryas_list
   ```
+  
+**Os autores do projeto são:**
+  | [<img src="https://avatars.githubusercontent.com/u/53124770?v=4" width=115><br><sub>Geovanna Domingos</sub>](https://github.com/geovannaadomingos) |  [<img src="https://avatars.githubusercontent.com/u/86128256?v=4" width=115><br><sub>Giovanna Machado</sub>](https://github.com/giovannamachado) |  [<img src="https://avatars.githubusercontent.com/u/104395661?v=4" width=115><br><sub>Gustavo de Holanda</sub>](https://github.com/gustavo-ghcs) |
