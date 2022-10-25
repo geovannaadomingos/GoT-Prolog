@@ -63,6 +63,6 @@ X é o pai de Y. Também pode consultar mãe/pai_
   
 
 ## Os autores do projeto são:
-| [<img src="https://avatars.githubusercontent.com/u/53124770?v=4" width=115><br><sub>Eduardo Teles - edot@cin.ufpe.br </sub>](https://github.com/geovannaadomingos) |  [<img src="https://avatars.githubusercontent.com/u/53124770?v=4" width=115><br><sub>Geovanna Domingos - gmdn@cin.ufpe.br </sub>](https://github.com/geovannaadomingos) |
+| [<img src="https://avatars.githubusercontent.com/u/84032760?v=4" width=115><br><sub>Eduardo Teles - edot@cin.ufpe.br </sub>](https://github.com/EduTeles13) |  [<img src="https://avatars.githubusercontent.com/u/53124770?v=4" width=115><br><sub>Geovanna Domingos - gmdn@cin.ufpe.br </sub>](https://github.com/geovannaadomingos) |
 | :---: | :---:
 | [<img src="https://avatars.githubusercontent.com/u/86128256?v=4" width=115><br><sub>Giovanna Machado - gpmb@cin.ufpe.br </sub>](https://github.com/giovannamachado) | [<img src="https://avatars.githubusercontent.com/u/104395661?v=4" width=115><br><sub>Gustavo de Hollanda - ghcs@cin.ufpe.br </sub>](https://github.com/gustavo-ghcs) |
