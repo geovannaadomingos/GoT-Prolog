@@ -1,10 +1,10 @@
 # :crossed_swords: GoT-Prolog
 ## Utilizando a linguagem de programação Prolog para construir e manipular um banco de dados dos personagens da série Game of Thrones, a fim de praticar os conceitos apredidos na disciplina de Lógica para Computação do [CIn](https://portal.cin.ufpe.br/) UFPE
 
-### O projeto foi construído a partir deste [artigo](https://medium.freecodecamp.org/how-to-learn-prolog-by-watching-game-of-thrones-4852ea960017) e de deste [repositório similar](https://github.com/rachelwiles/GoT-Check)
 
+** O projeto foi construído a partir deste [artigo](https://medium.freecodecamp.org/how-to-learn-prolog-by-watching-game-of-thrones-4852ea960017) e de deste [repositório similar](https://github.com/rachelwiles/GoT-Check)
 
-##### Obs.: Para rodar o projeto, utilize o SWI-Prolog. 
+** Obs.: Para rodar o projeto, utilize o SWI-Prolog. 
 
 
 **As chaves disponíveis para uso e suas respectivas funcionalidades são:**
@@ -61,7 +61,8 @@ X é o pai de Y. Também pode consultar mãe/pai_
   ?-aryas_list
   ```
   
-**Os autores do projeto são:**
+
+## Os autores do projeto são:
 | [<img src="https://avatars.githubusercontent.com/u/53124770?v=4" width=115><br><sub>Eduardo Teles - edot@cin.ufpe.br </sub>](https://github.com/geovannaadomingos) |  [<img src="https://avatars.githubusercontent.com/u/53124770?v=4" width=115><br><sub>Geovanna Domingos - gmdn@cin.ufpe.br </sub>](https://github.com/geovannaadomingos) |
 | :---: | :---:
 | [<img src="https://avatars.githubusercontent.com/u/86128256?v=4" width=115><br><sub>Giovanna Machado - gpmb@cin.ufpe.br </sub>](https://github.com/giovannamachado) | [<img src="https://avatars.githubusercontent.com/u/104395661?v=4" width=115><br><sub>Gustavo de Hollanda - ghcs@cin.ufpe.br </sub>](https://github.com/gustavo-ghcs) |
