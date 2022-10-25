@@ -567,7 +567,8 @@ house_of(X,Y) :-
     !;
     return_lastname(X, Name, Lastname),
     return_house(Lastname, Y). 
-
+    
+%--------Retorna o sobrenome do personagem ------------
 return_lastname(String, Name, Lastname) :-
     sub_string(String, Before, _, After, "_"),
     !,
