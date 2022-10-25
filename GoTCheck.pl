@@ -542,28 +542,28 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 
 house_of(X,Y) :-
     X = "gendry",
-    Y = "baratheon",
+    string_to_atom("baratheon",Y),
     !;
     X = "unknown_mother_stark",
-    Y = "stark",
+    string_to_atom("stark",Y),
     !;
     X = "unknown_mother_targaryen",
-    Y = "targaryen",
+    string_to_atom("targaryen",Y),
     !;
     X = "unknown_mother_martell",
-    Y = "martell",
+    string_to_atom("martell",Y),
     !;
     X = "four_unknown_martells",
-    Y = "martell",
+    string_to_atom("martell",Y),
     !;
     X = "unknown_mother_greyjoy",
-    Y = "greyjoy",
+    string_to_atom("greyjoy",Y),
     !;
     X = "unknown_father_greyjoy",
-    Y = "greyjoy",
+    string_to_atom("greyjoy",Y),
     !;
     X = "unknown_mother_lannister",
-    Y = "lannister",
+    string_to_atom("lannister",Y),
     !;
     return_lastname(X, Name, Lastname),
     return_house(Lastname, Y). 
@@ -576,48 +576,47 @@ return_lastname(String, Name, Lastname) :-
 
 return_house(Lastname, Y) :-
     Lastname = "stark",
-    Y = "stark",
+    string_to_atom("stark",Y),
     !;
     Lastname = "snow",
-    Y = "stark",
+    string_to_atom("stark",Y),
     !;
     Lastname = "tyrell",
-    Y = "tyrell",
+    string_to_atom("tyrell",Y),
     !;
     Lastname = "hightower",
-    Y = "tyrell",
+    string_to_atom("tyrell",Y),
     !;
     Lastname = "martell",
-    Y = "martell",
+    string_to_atom("martell",Y),
     !;
     Lastname = "sand",
-    Y = "martell",
+    string_to_atom("sand",Y),
     !;
     Lastname = "targaryen",
-    Y = "targaryen",
+    string_to_atom("targaryen",Y),
     !;
     Lastname = "snow",
-    Y = "targaryen",
+    string_to_atom("targaryen",Y),
     !;
     Lastname = "greyjoy",
-    Y = "greyjoy",
+    string_to_atom("greyjoy",Y),
     !;
     Lastname = "harlaw",
-    Y = "greyjoy",
+    string_to_atom("greyjoy",Y),
     !;
     Lastname = "lannister",
-    Y = "lannister",
+    string_to_atom("lannister",Y),
     !;
     Lastname = "baratheon",
-    Y = "baratheon",
+    string_to_atom("baratheon",Y),
     !;
     Lastname = "estermont",
-    Y = "baratheon",
+    string_to_atom("baratheon",Y),
     !;
     Y = "Nenhuma casa correspondente",
     !.
     
-   
    
 %______________________________________________________________________
 % RETORNANDO LISTA COM TODOS OS PERSONAGENS DA SÉRIE 
