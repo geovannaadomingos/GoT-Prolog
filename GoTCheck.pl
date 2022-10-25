@@ -1,13 +1,12 @@
-%-------------------------GoT Check-------------------------
-% Accurate as of end of season 7 (excluding events in the books)
+%-------------------------------------------------------GoT Prolog------------------------------------------------------
+% Parentescos entre os personagens da série até o fim da temporada 7, sem considerar enventos dos livros.
 
-% Includes all major houses in game of thrones, their family trees, gender and status.
-% For full list of applications, see accompanying README for example queries.
+% Outras informações estão descritas no README do projeto.
 
-%____________________________________________________________
-% DATABASE OF ALL MAJOR HOUSES
+%_______________________________________________________________________________________________________________________
+% ADICIONANDO RELAÇAO PAI E FILHO DOS PERSONAGENS DAS PRINCIPAIS CASAS(declarando que X é pai/mãe de um determinado Y):
 
-% House Stark
+% Casa Stark
 parent(rickard_stark, brandon_stark).
 parent(rickard_stark, eddard_stark).
 parent(rickard_stark, benjen_stark).
@@ -28,7 +27,7 @@ parent(catelyn_stark, bran_stark).
 parent(catelyn_stark, rickon_stark).
 parent(lyanna_stark, jon_snow).
 
-% House Tyrell
+% Casa Tyrell
 parent(luthor_tyrell, mace_tyrell).
 parent(olenna_tyrell, mace_tyrell).
 parent(mace_tyrell, margaery_tyrell).
@@ -37,7 +36,7 @@ parent(alerie_hightower, margaery_tyrell).
 parent(alerie_hightower, loras_tyrell).
 
 
-% House Targaryen
+% Casa Targaryen
 parent(aegon_V_targaryen, duncan_targaryen).
 parent(aegon_V_targaryen, aerys_targaryen).
 parent(aegon_V_targaryen, rhaella_targaryen).
@@ -56,7 +55,7 @@ parent(rhaegar_targaryen, rhaenys_targaryen).
 parent(rhaegar_targaryen, aegon_targaryen).
 parent(rhaegar_targaryen, jon_snow).
 
-% House Martell (+ Sand)
+% Casa Martell (+ Sand)
 parent(unknown_mother_martell, doran_martell).
 parent(unknown_mother_martell, ella_martell).
 parent(unknown_mother_martell, oberyn_martell).
@@ -78,7 +77,7 @@ parent(unknown_mother1_sand, obara_sand).
 parent(unknown_mother2_sand, nymeria_sand).
 parent(unknown_mother3_sand, sarella_sand).
 
-% House Greyjoy
+% Casa Greyjoy
 parent(unknown_mother_greyjoy, balon_greyjoy).
 parent(unknown_mother_greyjoy, euron_greyjoy).
 parent(unknown_mother_greyjoy, aeron_greyjoy).
@@ -94,7 +93,7 @@ parent(alannys_harlaw, maron_greyjoy).
 parent(alannys_harlaw, yara_greyjoy).
 parent(alannys_harlaw, theon_greyjoy).
 
-% House Lannister
+% Casa Lannister
 parent(unknown_mother_lannister, tywin_lannister).
 parent(unknown_mother_lannister, kevan_lannister).
 parent(tytos_lannister, tywin_lannister).
@@ -115,7 +114,7 @@ parent(kevan_lannister, lancel_lannister).
 parent(kevan_lannister, willem_lannister).
 parent(kevan_lannister, martyn_lannister).
 
-% House Baratheon
+% Casa Baratheon
 parent(steffon_baratheon, robert_baratheon).
 parent(steffon_baratheon, stannis_baratheon).
 parent(steffon_baratheon, renly_baratheon).
@@ -127,8 +126,8 @@ parent(stannis_baratheon, shireen_baratheon).
 parent(selyse_baratheon, shireen_baratheon).
 
 
-%____________________________________________________________
-% ADD GENDER TO DATABASE
+%_______________________________________________________________________________________________________________________
+% ADICIONANDO UM GENERO, FEMININO(female) OU MASCULINO(male), A CADA PERSONAGEM:
 
 male(aegon_targaryen).
 male(aegon_V_targaryen).
@@ -209,8 +208,8 @@ female(yara_greyjoy).
 female(alerie_hightower).
 
 
-%____________________________________________________________
-% ALIVE OR DEAD (OR UNKNOWN)
+%_______________________________________________________________________________________________________________________
+% ADICIONANDO A INFORMACAO SOBRE A SITUAÇAO DO PERSONAGEM(vivo, morto ou situação desconhecida):
 
 status(arya_stark, alive).
 status(bran_stark, alive).
