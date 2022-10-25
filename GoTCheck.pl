@@ -542,28 +542,28 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 
 house_of(X,Y) :-
     X = "gendry",
-    Y = "Baratheon",
+    Y = "baratheon",
     !;
     X = "unknown_mother_stark",
-    Y = "Stark",
+    Y = "stark",
     !;
     X = "unknown_mother_targaryen",
-    Y = "Targaryen",
+    Y = "targaryen",
     !;
     X = "unknown_mother_martell",
-    Y = "Martell",
+    Y = "martell",
     !;
     X = "four_unknown_martells",
-    Y = "Martell",
+    Y = "martell",
     !;
     X = "unknown_mother_greyjoy",
-    Y = "Greyjoy",
+    Y = "greyjoy",
     !;
     X = "unknown_father_greyjoy",
-    Y = "Greyjoy",
+    Y = "greyjoy",
     !;
     X = "unknown_mother_lannister",
-    Y = "Lannister",
+    Y = "lannister",
     !;
     return_lastname(X, Name, Lastname),
     return_house(Lastname, Y). 
@@ -576,44 +576,43 @@ return_lastname(String, Name, Lastname) :-
 
 return_house(Lastname, Y) :-
     Lastname = "stark",
-    Y = "Stark",
+    Y = "stark",
     !;
     Lastname = "snow",
-    Y = "Stark",
+    Y = "stark",
     !;
     Lastname = "tyrell",
-    Y = "Tyrell",
+    Y = "tyrell",
     !;
     Lastname = "hightower",
-    Y = "Tyrell",
+    Y = "tyrell",
     !;
     Lastname = "martell",
-    Y = "Martell",
+    Y = "martell",
     !;
     Lastname = "sand",
-    Y = "Martell",
+    Y = "martell",
     !;
     Lastname = "targaryen",
-    Y = "Targaryen",
+    Y = "targaryen",
     !;
     Lastname = "snow",
-    Y = "Targaryen",
+    Y = "targaryen",
     !;
     Lastname = "greyjoy",
-    Y = "Greyjoy",
+    Y = "greyjoy",
     !;
     Lastname = "harlaw",
-    Y = "Greyjoy",
+    Y = "greyjoy",
     !;
     Lastname = "lannister",
-    Y = "Lannister",
+    Y = "lannister",
     !;
     Lastname = "baratheon",
-    Y = "Baratheon",
+    Y = "baratheon",
     !;
     Lastname = "estermont",
-    Y = "Baratheon",
+    Y = "baratheon",
     !;
     Y = "Nenhuma casa correspondente",
     !.
-
