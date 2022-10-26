@@ -643,3 +643,14 @@ power_of(X, Y) :- 					% Retorna o poder da casa a partir das funções return_p
     return_people_by_house(People, List, X), 
     length(List, Y).
 
+
+
+ 
+%__________________________________________________________________________________________________________________________________________
+% RETORNANDO A INFORMAÇAO DE QUE UM PERSONAGEM X É SOLTEIRO(true) OU NAO(false)
+
+is_single(X) :-
+	findall(Y, parent(X,Y), Children), 			% Retorna uma lista Children com todos os filhos do personagem X
+    length(Children, Len),
+    Len = 0,							% Se o tamanho da lista de filhos for 0, o personagem X é solteiro
+    Single = True.
