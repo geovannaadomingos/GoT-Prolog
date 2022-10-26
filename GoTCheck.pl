@@ -537,7 +537,7 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 	status(X, alive).
 
 
-%_______________________________________________________________________________________________________________________
+%________________________________________________________________________________________________________________________________________
 % RETORNANDO A CASA DE UM PERSONAGEM X A PARTIR DO SEU SOBRENOME:
 
 house_of(X,Y) :-
@@ -568,7 +568,7 @@ house_of(X,Y) :-
     return_lastname(X, Name, Lastname),
     return_house(Lastname, Y). 
 
-return_lastname(String, Name, Lastname) :-
+return_lastname(String, Name, Lastname) :-            			% Pega o nome completo do personagem e o separa em nome e sobrenome pelo "_"
     sub_string(String, Before, _, After, "_"),
     !,
     sub_atom(String, 0, Before, _, Name),
@@ -618,12 +618,28 @@ return_house(Lastname, Y) :-
     !.
     
    
-%______________________________________________________________________
-% RETORNANDO LISTA COM TODOS OS PERSONAGENS DA SÉRIE 
+%__________________________________________________________________________________________________________________________________________
+% RETORNANDO O PODER Y DE UMA CASA X PELA QUANTIDADE DE PERSOAGENS DELA
 
-return_people(People) :-
+return_people(People) :-                       				% Retorna uma lista com todos os personagens da série
     findall(X, (female(X); male(X)), People).
 
 
 
+return_people_by_house([], [], _X) :- 					% Retorna uma lista com todos os personagens de uma casa específica
+    !.
+return_people_by_house([Head|Tall], [Head|Tall1], X) :- 
+    house_of(Head, Y), 
+    Y = X,
+    !, 
+    return_people_by_house(Tall, Tall1, X).
+return_people_by_house([_Head|Tall], Tall1, X) :- 
+    return_people_by_house(Tall, Tall1, X).
+    
+    
+   
+power_of(X, Y) :- 					% Retorna o poder da casa a partir das funções return_people e return_people_by_house
+    return_people(People), 
+    return_people_by_house(People, List, X), 
+    length(List, Y).
 
