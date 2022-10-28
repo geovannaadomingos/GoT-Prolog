@@ -471,7 +471,7 @@ ancestor(X, Y) :-								% Looping
 	ancestor(Z, Y).
 
 ancestors(X, Ancestor_of) :-
-	findall(A, ancestor(X, A), Ancestor_of).	% Returns a list of all results for ancestor(X,Y).
+	findall(A, ancestor(A, X), Ancestor_of).      % Retorna a lista com os acestrais do personagem(pais, avos)
 
 
 %____________________________________________________________
