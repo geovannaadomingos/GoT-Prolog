@@ -680,3 +680,29 @@ dragon(X, Y) :- dragon_owner(X, Y), dragon(X).
 
 %Verificando se um X é dono
 owner(X, Y) :- dragon_owner(X, Y), owner(Y).
+
+
+
+
+%_______________________________________________________________________________________________________________________________________
+% RETORNANDO O PODER Z QUE UM X TERÁ CASO SE CASE COM UM Y (o poder é dado pela quantidade de ancestrais e relacionamentos de Y)
+
+return_people_relationship(X, Y, Tamanho) :-
+	all_relationship(Y, List1),
+    ancestors(Y, List2),
+    append(List1, List2, List3),
+    all_relationship(X, List4),
+    ancestors(X, List5),
+    append(List4, List5, List6),
+    append(List3, List6, List).
+% tentar tirar as duplicatas de List(lista que une as relações de x e y), calcular o tamanho dessa lista sem as duplicatas, subtrair pelo tamanho da lista com as relações de x(List6) e retornar
+	
+
+marriage_power(X, Y, Z) :-
+    is_single(X),
+    is_single(Y),
+    return_people_relationship(X, Y, Tamanho),
+    % length(List, Len),
+    Z = Tamanho + 1;      							%Aqui somamos 1 para que a relação de X com o próprio Y seja contada
+    Z = False.
+
