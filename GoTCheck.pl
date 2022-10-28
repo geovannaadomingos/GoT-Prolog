@@ -286,17 +286,15 @@ status(thoros_of_myr, dead).
 status(alerie_hightower, dead).
 
 
-
-
-% For those unclear if dead or alive...
+% Para descobrir aqueles que não se sabe se estão mortos ou vivos...
 status(X, unknown) :-
-	not(status(X, alive)),						% Example of 'not' query
+	not(status(X, alive)),						% Exemplo de 'not' query
 	not(status(X, dead)),
-	!.											% Example of a cut '!' to stop backtracking
+	!.											%Exemplo de um corte '!' parar de retroceder
 
 
-%____________________________________________________________
-% DEFINE CHILD RELATIONSHIP - just using parent + gender facts
+%______________________________________________________________________________________________________________________________________________
+% DEFINE RELAÇAO DE FILHO - usando parentesco e genero
 
 child(X, Y) :-
 	parent(Y, X).
@@ -314,12 +312,12 @@ children(X, Children) :-
 	!.
 
 children(X, Children) :-
-	not(setof(Y, parent(X,Y), Children)),		% If not in the list, children is unknown.
-	Children = none.							% '=' assigns parents to string 'unknown'
+	not(setof(Y, parent(X,Y), Children)),		% Se não estiver na lista, os filhos são desconhecidos.
+	Children = none.			 % '=' atribui pais à string 'unknown'
 
 
-%____________________________________________________________
-% DEFINE MOTHER/FATHER RELATIONSHIP - just using parent + gender facts
+%_____________________________________________________________________________________________________________________________
+% DEFINIR RELAÇÃO MÃE/PAI - apenas usando pais + fatos de gênero
 
 mother(X, Y) :-
 	parent(X, Y),
@@ -337,13 +335,13 @@ parents(X, Parents) :-
 	not(setof(Y, parent(Y, X), Parents)),		
 	Parents = unknown.								
 
-%____________________________________________________________
-% DEFINE SIBLING RELATIONSHIP
+%________________________________________________________________________________________________________________________________________________
+% DEFINIR RELAÇÃO ENTRE IRMÃOS
 
 sibling(X, Y) :-
 	parent(Z, X),
 	parent(Z, Y),
-	dif(X, Y).									% Stops it returning themself as a sibling.
+	dif(X, Y).								% Para de retornar a si mesmo como um irmão.
 						
 
 		% ISSUE: This alone returns the same sibling twice, 
@@ -370,7 +368,7 @@ brother(X, Y) :-
 	male(X).
 
 
-%____________________________________________________________
+%___________________________________________________________________________________________________________________________
 % DEFINE FURTHER RELATIONSHIPS
 
 aunt(X, Y) :-
@@ -394,7 +392,7 @@ nephew(X, Y) :-
 	dif(Y, Z).	
 	
 
-%____________________________________________________________
+%_________________________________________________________________________________________________________________________________________
 % FIND RELATIONSHIP BETWEEN
 
 relationship(X, Y) :-
