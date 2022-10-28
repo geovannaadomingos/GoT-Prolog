@@ -417,7 +417,7 @@ all_relationship(X, List) :-
     findall(Y, relationship(X,Y), List).  			% Retorna List, uma lista. com os relacionamentos
 
 %______________________________________________________________________________________________________________________________________
-%RETORNA O STATUS DE VIDA OY MORTE DO PERSONAGEM
+%RETORNA O STATUS DE VIDA Ou MORTE DO PERSONAGEM
 
 alive_or_dead(X) :-
 	status(X, Y),
@@ -425,7 +425,7 @@ alive_or_dead(X) :-
 
 
 %____________________________________________________________________________________________________________________________________
-% RETORNA CARACTERISTICA SGERAIS SOBRE UM PERSONAGEM
+% RETORNA CARACTERISTICAS GERAIS SOBRE UM PERSONAGEM
 
 tell_me_about(X) :-
 	alive_or_dead(X),
@@ -635,3 +635,48 @@ is_single(X) :-
     
     
 %_____________________________________________________________________________________________________________________________________________
+% ESTABELECENDO RELAÇAO DE DRAGAO E DONO
+
+
+% Definindo as relações de dono e dragao
+dragon_owner(balerion, aegon).
+dragon_owner(vhagar, aemond_targaryen).
+dragon_owner(caraxes, daemon_targaryen).
+dragon_owner(meraxes, rhaenys_targaryen).
+dragon_owner(drogon, daenerys_targaryen).
+dragon_owner(vermithor, jaehaerys_targaryen).
+dragon_owner(quicksilver, aenys_targaryen).
+dragon_owner(silverwing, alysanne_targaryen).
+dragon_owner(vermax, jacaeryz_velaryion).
+
+% Definindo os dragoes
+dragon(balerion).
+dragon(vhagar).
+dragon(caraxes).
+dragon(meraxes).
+dragon(drogon).
+dragon(vermithor).
+dragon(quicksilver).
+dragon(quicksilver).
+dragon(silverwing).
+dragon(vermax).
+
+
+% Definindo os donos
+owner(aegon).
+owner(aemond_targaryen).
+owner(daemon_targaryen).
+owner(rhaenys_targaryen).
+owner(daenerys_targaryen).
+owner(jaehaerys_targaryen).
+owner(aenys_targaryen).
+owner(alysanne_targaryen).
+owner(jacaeryz_velaryion).
+
+
+%Verificando se um X é dragao
+dragon(X, Y) :- dragon_owner(X, Y), dragon(X).
+
+
+%Verificando se um X é dono
+owner(X, Y) :- dragon_owner(X, Y), owner(Y).
