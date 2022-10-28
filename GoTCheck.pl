@@ -208,7 +208,7 @@ female(yara_greyjoy).
 female(alerie_hightower).
 
 
-%_______________________________________________________________________________________________________________________
+%______________________________________________________________________________________________________________________________________
 % ADICIONANDO A INFORMACAO SOBRE A SITUAÇAO DO PERSONAGEM(vivo, morto ou situação desconhecida):
 
 status(arya_stark, alive).
@@ -294,7 +294,7 @@ status(X, unknown) :-
 
 
 %______________________________________________________________________________________________________________________________________________
-% DEFINE RELAÇAO DE FILHO - usando parentesco e genero
+% DEFINE RELAÇAO DE FILHO - usando parentesco e genero (declarando X como filho/filha/filhos de Y)
 
 child(X, Y) :-
 	parent(Y, X).
@@ -317,7 +317,7 @@ children(X, Children) :-
 
 
 %_____________________________________________________________________________________________________________________________
-% DEFINIR RELAÇÃO MÃE/PAI - apenas usando pais + fatos de gênero
+% DEFINIR RELAÇÃO MÃE/PAI -  usando parentesco e genero (declara se X é mão OU pai de Y)
 
 mother(X, Y) :-
 	parent(X, Y),
@@ -336,7 +336,7 @@ parents(X, Parents) :-
 	Parents = unknown.								
 
 %________________________________________________________________________________________________________________________________________________
-% DEFINIR RELAÇÃO ENTRE IRMÃOS
+% DEFINIR RELAÇÃO ENTRE IRMÃOS (declara que um X é irmão de Y, se é irma OU irmao, retorna uma lista com todos imaos)
 
 sibling(X, Y) :-
 	parent(Z, X),
@@ -369,7 +369,7 @@ brother(X, Y) :-
 
 
 %___________________________________________________________________________________________________________________________
-% DEFINE FURTHER RELATIONSHIPS
+% DEFINE RELACAO DE TIA, TIO, SOBRINHA, SOBRINHO (declarando que um X tem tio/tia/sobrinha/sobrinho de Y)
 
 aunt(X, Y) :-
 	sister(X, Z),
@@ -393,59 +393,39 @@ nephew(X, Y) :-
 	
 
 %_________________________________________________________________________________________________________________________________________
-% FIND RELATIONSHIP BETWEEN
+% RETORNANDO TODOS OS RELACIONAMENTOS(com excecao de filho, filhas, pais, maes e avos) DO PERSONAGEM X
 
 relationship(X, Y) :-
-	mother(X, Y),
-	format("~w is the mother of ~w", [X, Y]), nl.
+	sister(X, Y).
 
 relationship(X, Y) :-
-	father(X, Y),
-	format("~w is the father of ~w", [X, Y]), nl.
+	brother(X, Y).
 
 relationship(X, Y) :-
-	daughter(X, Y),
-	format("~w is the daughter of ~w", [X, Y]), nl.
+	aunt(X, Y).
 
 relationship(X, Y) :-
-	son(X, Y),
-	format("~w is the son of ~w", [X, Y]), nl.
+	uncle(X, Y).
 
 relationship(X, Y) :-
-	sister(X, Y),
-	format("~w is the sister of ~w", [X, Y]), nl.
+	neice(X, Y).
 
 relationship(X, Y) :-
-	brother(X, Y),
-	format("~w is the brother of ~w", [X, Y]), nl.
+	nephew(X, Y).
 
-relationship(X, Y) :-
-	aunt(X, Y),
-	format("~w is the aunt of ~w", [X, Y]), nl.
+all_relationship(X, List) :-
+    findall(Y, relationship(X,Y), List).  			% Retorna List, uma lista. com os relacionamentos
 
-relationship(X, Y) :-
-	uncle(X, Y),
-	format("~w is the uncle of ~w", [X, Y]), nl.
-
-relationship(X, Y) :-
-	neice(X, Y),
-	format("~w is the neice of ~w", [X, Y]), nl.
-
-relationship(X, Y) :-
-	nephew(X, Y),
-	format("~w is the nephew of ~w", [X, Y]), nl.
-
-
-%____________________________________________________________
-% FIND IF ALIVE / DEAD
+%______________________________________________________________________________________________________________________________________
+%RETORNA O STATUS DE VIDA OY MORTE DO PERSONAGEM
 
 alive_or_dead(X) :-
 	status(X, Y),
 	format("Status: ~w", [Y]), nl.
 
 
-%____________________________________________________________
-% CREATE CHARACTER PROFILE
+%____________________________________________________________________________________________________________________________________
+% RETORNA CARACTERISTICA SGERAIS SOBRE UM PERSONAGEM
 
 tell_me_about(X) :-
 	alive_or_dead(X),
@@ -458,8 +438,8 @@ tell_me_about(X) :-
 	!.
 	
 
-%____________________________________________________________
-% FIND ANCESTOR
+%______________________________________________________________________________________________________________________________________
+% VERIFICANDO SE UM X é ANCESTRAL(entre pais e avos) DE UM Y OU A LISTA DE ACESTRAIS DE UM DETERMINADO X
 
 ancestor(X, Y) :-								% Terminating
 	parent(X, Y).
@@ -469,11 +449,11 @@ ancestor(X, Y) :-								% Looping
 	ancestor(Z, Y).
 
 ancestors(X, Ancestor_of) :-
-	findall(A, ancestor(A, X), Ancestor_of).      % Retorna a lista com os acestrais do personagem(pais, avos)
+	findall(A, ancestor(A, X), Ancestor_of).      % Retorna uma lista com os acestrais do personagem(pais, avos)
 
 
-%____________________________________________________________
-% FIND DESCENDANTS
+%______________________________________________________________________________________________________________________________________
+% VERIFICANDO SE UM X É DESCENDENTE DE UM Y OU A LISTA DE DESCENDENTES DE UM X 
 
 descendant(X, Y) :-
 	ancestor(Y, X).
@@ -482,7 +462,7 @@ descendants(X, Descendant_of) :-
 	findall(A, descendant(X, A), Descendant_of).
 
 
-%____________________________________________________________
+%_________________________________________________________________________________________________________________________________________
 % ARYAS LIST 
 
 on_list(the_hound).
@@ -527,7 +507,7 @@ aryas_list :-
 	format("Percentage complete: ~w%", [Percentage]), nl.
 
 
-%____________________________________________________________
+%_________________________________________________________________________________________________________________________________________
 % RIGHTFUL HEIR
 
 rightful_heir(X) :-								% Inarguable, faultess logic.
@@ -652,3 +632,6 @@ is_single(X) :-
     length(Children, Len),
     Len = 0,							% Se o tamanho da lista de filhos for 0, o personagem X é solteiro
     Single = True.
+    
+    
+_____________________________________________________________________________________________________________________________________________
