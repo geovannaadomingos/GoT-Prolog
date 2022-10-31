@@ -306,6 +306,10 @@ status(X, unknown) :-
 	not(status(X, dead)),
 	!.	
 	
+% Utilizando o predicado alive_or_dead para retornar se um personagem está morto ou vivo
+alive_or_dead(X) :-
+	status(X, Y),
+	format("Status: ~w", [Y]), nl.	% Utiliza o predicado format do prolog para retornar o tetxo formatado contendo o status de vida do personagem X
 
 %______________________________________________________________________________________________________________________
 % Utilizando o predicado child para determinar o filho X(de um gênero qualquer) de um determinado Y:
@@ -328,8 +332,8 @@ children(X, Children) :-
 	!.
 
 children(X, Children) :-
-	not(setof(Y, parent(X,Y), Children)),	% Caso o predicado não retorne a lista, determinamos o Children = unknown, isto é, os filhos como sendo desconhecidos. 
-	Children = unknown.			
+	not(setof(Y, parent(X,Y), Children)),	% Caso o predicado não retorne a lista, determinamos o Children = none, isto é, X não possui filhos 
+	Children = none.			
 
 
 %_____________________________________________________________________________________________________________________________
@@ -354,36 +358,31 @@ parents(X, Parents) :-
 	Parents = unknown.								
 
 %________________________________________________________________________________________________________________________________________________
-% DEFINIR RELAÇÃO ENTRE IRMÃOS (declara que um X é irmão de Y, se é irma OU irmao, retorna uma lista com todos imaos)
-
+% Utilizando o predicado sibling para retornar se X e Y são irmãos:
 sibling(X, Y) :-
-	parent(Z, X),
+	parent(Z, X),		% Utiliza o predicado parents para verificar se X e Y são filhos de mesmo(a) pai/mãe
 	parent(Z, Y),
-	dif(X, Y).								% Para de retornar a si mesmo como um irmão.
+	dif(X, Y).		% Utiliza o predicado dif do prolog para garantir que X é diferente de Y
 						
-
-		% ISSUE: This alone returns the same sibling twice, 
-		% if looking for a list of who are whos siblings. 
-		% Necessary to create a list of siblings without duplicates
-		% and lookup further relationships from this list, to 
-		% minimalise further duplicates...
-
-
+% Utilizando o predicado list_siblings para retornar uma lista Siblings com todos os irmãos Y(de qualquer gênero) de um personagem X:
 list_siblings(X, Siblings) :-
-	setof(Y, sibling(X,Y), Siblings);			% Creates list of all siblings, excluding duplicates. 
-	Siblings = none.							% If no siblings, returns none.
+	setof(Y, sibling(X,Y), Siblings);	% Utilizando o predicado do prolog setof para criar uma lista Siblings com todos os irmãos Y - de qualquer gênero - de um dado X, excluindo possíveis repetições 
+	Siblings = none.			% Caso nõa tenha irmãos na lista Sibligs, retorna none.
 
 siblings(X, Y) :-
 	list_siblings(X, Siblings),
-	member(Y, Siblings).						% Checks if the queried sibling is a member of the
-												% list of siblings for that person.
+	member(Y, Siblings).			% Checks if the queried sibling is a member of the
+					% list of siblings for that person.
+					
+% Utilizando o predicado sister para verificar se X é irmã de Y
 sister(X, Y) :-
 	siblings(X, Y),
-	female(X).
+	female(X). 		% Utilizando o predicado female para selecionar os personagens do gênero feminino
 
+% Utilizando o predicado sister para verificar se X é irmão de Y
 brother(X, Y) :-
 	siblings(X, Y),
-	male(X).
+	male(X).		% Utilizando o predicado male para selecionar os personagens do gênero masculino
 
 
 %___________________________________________________________________________________________________________________________
@@ -452,15 +451,6 @@ relationship(X, Y) :-
 relationship(X, Y) :-
 	nephew(X, Y),
 	format("~w is the nephew of ~w", [X, Y]), nl.
-
-
-%______________________________________________________________________________________________________________________________________
-%RETORNA O STATUS DE VIDA Ou MORTE DO PERSONAGEM
-
-alive_or_dead(X) :-
-	status(X, Y),
-	format("Status: ~w", [Y]), nl.
-
 
 %____________________________________________________________________________________________________________________________________
 % Utilizando o predicado tell_me_about para retornar características de um personagem X:
