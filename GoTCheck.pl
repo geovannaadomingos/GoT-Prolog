@@ -415,44 +415,28 @@ nephew(X, Y) :-
 % RETORNANDO O TIPO DE RELACIONAMENTO ENTRE X e Y(com excecao de filho, filhas, pais, maes e avos) DO PERSONAGEM X
 
 relationship(X, Y) :-
-	mother(X, Y),
-	format("~w is the mother of ~w", [X, Y]), nl.
+	mother(X, Y).
 
 relationship(X, Y) :-
-	father(X, Y),
-	format("~w is the father of ~w", [X, Y]), nl.
+	father(X, Y).
 
 relationship(X, Y) :-
-	daughter(X, Y),
-	format("~w is the daughter of ~w", [X, Y]), nl.
+	sister(X, Y).
 
 relationship(X, Y) :-
-	son(X, Y),
-	format("~w is the son of ~w", [X, Y]), nl.
+	brother(X, Y).
 
 relationship(X, Y) :-
-	sister(X, Y),
-	format("~w is the sister of ~w", [X, Y]), nl.
+	aunt(X, Y).
 
 relationship(X, Y) :-
-	brother(X, Y),
-	format("~w is the brother of ~w", [X, Y]), nl.
+	uncle(X, Y).
 
 relationship(X, Y) :-
-	aunt(X, Y),
-	format("~w is the aunt of ~w", [X, Y]), nl.
+	neice(X, Y).
 
 relationship(X, Y) :-
-	uncle(X, Y),
-	format("~w is the uncle of ~w", [X, Y]), nl.
-
-relationship(X, Y) :-
-	neice(X, Y),
-	format("~w is the neice of ~w", [X, Y]), nl.
-
-relationship(X, Y) :-
-	nephew(X, Y),
-	format("~w is the nephew of ~w", [X, Y]), nl.
+	nephew(X, Y).
 
 %____________________________________________________________________________________________________________________________________
 % Utilizando o predicado tell_me_about para retornar características de um personagem X:
