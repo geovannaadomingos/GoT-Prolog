@@ -546,6 +546,7 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 
 
 %________________________________________________________________________________________________________________________________________
+%TAREFA 2
 % RETORNANDO A CASA DE UM PERSONAGEM X A PARTIR DO SEU SOBRENOME:
 
 house_of(X,Y) :-
@@ -627,6 +628,7 @@ return_house(Lastname, Y) :-
     
    
 %__________________________________________________________________________________________________________________________________________
+%TAREFA 3
 % RETORNANDO O PODER Y DE UMA CASA X PELA QUANTIDADE DE PERSOAGENS DELA
 
 return_people(People) :-                       				% Retorna uma lista com todos os personagens da série
@@ -652,9 +654,8 @@ power_of(X, Y) :- 					% Retorna o poder da casa a partir das funções return_p
     length(List, Y).
 
 
-
- 
 %__________________________________________________________________________________________________________________________________________
+%TAREFA 4
 % RETORNANDO A INFORMAÇAO DE QUE UM PERSONAGEM X É SOLTEIRO(true) OU NAO(false)
 
 is_single(X) :-
@@ -665,6 +666,45 @@ is_single(X) :-
     
     
 %_____________________________________________________________________________________________________________________________________________
+%TAREFA 5
+% RETORNANDO O PODER Z QUE UM X TERÁ CASO SE CASE COM UM Y (o poder é dado pela quantidade de ancestrais e relacionamentos de Y)
+
+
+return_people_relationship(X, Y, Z) :-
+	all_relationship(Y, List1),
+    ancestors(Y, List2),
+    append(List1, List2, ListY),
+    sort(ListY, NListY),
+    all_relationship(X, List4),
+    ancestors(X, List5),
+    append(List4, List5, ListX),
+    sort(ListX, NListX),
+    append(NListY, NListX, ListNew),
+    sort(ListNew, List),
+    length(List, LenT),
+    length(NListX, LenX),
+    Z is LenT - LenX + 1.	
+
+
+diferent_sex(X,Y) :-
+    (male(X), male(Y));
+    (female(X), female(Y)).
+
+can_marriage(X,Y) :-
+    not(diferent_sex(X,Y)).
+
+marriage_power(X, Y, Z) :-
+    is_single(X),
+    is_single(Y),
+    can_marriage(X, Y),
+    return_people_relationship(X, Y, Z).
+
+
+
+
+
+%____________________________________________________________________________________________________________________________________________
+%TAREFA EXTRA
 % ESTABELECENDO RELAÇAO DE DRAGAO E DONO
 
 
@@ -704,36 +744,9 @@ owner(alysanne_targaryen).
 owner(jacaeryz_velaryion).
 
 
-%Verificando se um X é dragao
-dragon(X, Y) :- dragon_owner(X, Y), dragon(X).
+%Verificando o dragao do respectivo dono (X)
+dragon(X, Y) :- dragon_owner(X, Y), dragon(X).     %retorna o dragao do dono(X)
 
 
-%Verificando se um X é dono
-owner(X, Y) :- dragon_owner(X, Y), owner(Y).
-
-
-
-
-%_______________________________________________________________________________________________________________________________________
-% RETORNANDO O PODER Z QUE UM X TERÁ CASO SE CASE COM UM Y (o poder é dado pela quantidade de ancestrais e relacionamentos de Y)
-
-return_people_relationship(X, Y, Len) :-
-	house_of(X, Housex),
-	house_of(Y, Housey),
-	return_people(People), 
-    	return_people_by_house(People, Listx, Housex), 
-	return_people_by_house(People, Listy, Housey),
-	append(Housex, Housey, List,
-	length(List, Len).
-	
-
-% tentar tirar as duplicatas de List(lista que une as relações de x e y), calcular o tamanho dessa lista sem as duplicatas, subtrair pelo tamanho da lista com as relações de X(Housex) e retornar
-	
-
-marriage_power(X, Y, Z) :-
-    is_single(X),
-    is_single(Y),
-    return_people_relationship(X, Y, Len),
-    Z = Len + 1;      							%Aqui somamos 1 para que a relação de X com o próprio Y seja contada
-    Z = False.
-
+%Verificando o dono do dragao (Y) 
+owner(X, Y) :- dragon_owner(X, Y), owner(Y).      %retorna o dono do dragao(Y)
