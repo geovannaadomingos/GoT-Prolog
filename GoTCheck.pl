@@ -1,10 +1,21 @@
-%-------------------------------------------------------GoT Prolog------------------------------------------------------
-% Parentescos entre os personagens da série até o fim da temporada 7, sem considerar enventos dos livros.
+%------------------------------------------------------ GoT Prolog ----------------------------------------------------
 
-% Outras informações estão descritas no README do projeto.
+% Projeto utilizando a linguagem de programação Prolog para construir e manipular um banco de dados dos personagens da 
+% série Game of Thrones, a fim de praticar os conceitos apredidos na disciplina de Lógica para Computação do CIn UFPE.
 
-%_______________________________________________________________________________________________________________________
-% ADICIONANDO RELAÇAO PAI E FILHO DOS PERSONAGENS DAS PRINCIPAIS CASAS(declarando que X é pai/mãe de um determinado Y):
+% No projeto, estão sendo considerados personagens até o fim da temporada 7, sem considerar enventos dos livros, além
+% dessa, outras informações estão descritas no README do projeto.
+
+% Os responsáveis pela construção do projeto são:
+% - Eduardo Dias de Oliveira Teles - edot@cin.ufpe.br
+% - Geovanna Mayra Domingos Nascimento - gmdn@cin.ufpe.br
+% - Giovanna Paula Machado Bandeira - ghcs@cin.ufpe.br
+% - Gustavo de Hollanda Cavalcanti Soares - ghcs@cin.ufpe.br
+
+
+%______________________________________________________________________________________________________________________
+% Utilizado o predicado parent para adicionar relação de parentesco (declarando que X é pai/mãe de um determinado Y),
+% separando-os por casas(Stark, Tyrell. Targaryen, etc.)
 
 % Casa Stark
 parent(rickard_stark, brandon_stark).
