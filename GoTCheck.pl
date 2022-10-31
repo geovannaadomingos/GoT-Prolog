@@ -300,7 +300,7 @@ status(thoros_of_myr, dead).
 status(alerie_hightower, dead).
 
 
-% Para descobrir aqueles que não se sabe se estão mortos ou vivos...
+% Para descobrir aqueles que não se sabe se estão mortos ou vivos, utilizamos o predicado desta forma:
 status(X, unknown) :-
 	not(status(X, alive)),		% Utilizando o 'not', conseguimos identificar aqueles que não estão vivos e que não estão mortos
 	not(status(X, dead)),
@@ -308,45 +308,49 @@ status(X, unknown) :-
 	
 
 %______________________________________________________________________________________________________________________
-% Utilizando o predicado child para determinar o filho(de um gêneor qualquer) X de um determinado Y:
+% Utilizando o predicado child para determinar o filho X(de um gênero qualquer) de um determinado Y:
 child(X, Y) :-
 	parent(Y, X).
 	
-% Utilizando o predicado child para determinar a filha X de um determinado Y:
+% Utilizando o predicado daughter para determinar a filha X de um determinado Y:
 daughter(X, Y) :-
 	parent(Y, X),	
 	female(X).              % Utilizando o predicado female para selecionar os personagens do gênero feminino
 
+% Utilizando o predicado son para determinar o filho X de um determinado Y:
 son(X, Y) :-
 	parent(Y, X),
 	male(X).		% Utilizando o predicado male para selecionar os personagens do gênero masculino
 
+% Utilizando o predicado children para retornar a lista com os filhos X(de um gênero qualquer) de um determinado Y:
 children(X, Children) :-
 	setof(Y, parent(X,Y), Children),  % Utilizando a função setof para criar uma lista Children com todos os filhos X - de qualquer gênero - de um dado Y
 	!.
 
 children(X, Children) :-
-	not(setof(Y, parent(X,Y), Children)),	% Caso o predicado não retorne a lista, determinamos o Children = none, isto é, os filhos como sendo desconhecidos. 
-	Children = none.			
+	not(setof(Y, parent(X,Y), Children)),	% Caso o predicado não retorne a lista, determinamos o Children = unknown, isto é, os filhos como sendo desconhecidos. 
+	Children = unknown.			
 
 
 %_____________________________________________________________________________________________________________________________
-% DEFINIR RELAÇÃO MÃE/PAI -  usando parentesco e genero (declara se X é mão OU pai de Y)
-
+% Utilizando o predicado mother para determinar a mãe X de um determinado Y:
 mother(X, Y) :-
 	parent(X, Y),
-	female(X).
+	female(X).	% Utilizando o predicado female para selecionar os personagens do gênero feminino
 
+% Utilizando o predicado father para determinar o pai X de um determinado Y:
 father(X, Y) :-
 	parent(X, Y),
-	male(X).
+	male(X).	% Utilizando o predicado male para selecionar os personagens do gênero masculino
 
+
+% Utilizando o predicado parents para retornar a lista com os pais Y(de qualquer gênero) de um determinado X:
 parents(X, Parents) :-
 	setof(Y, parent(Y, X), Parents),
 	!.
 
 parents(X, Parents) :-
-	not(setof(Y, parent(Y, X), Parents)),		
+	not(setof(Y, parent(Y, X), Parents)),	% Caso o predicado não retorne a lista, determinamos o Parents = unknown, isto é, os pais como sendo desconhecidos. 	
 	Parents = unknown.								
 
 %________________________________________________________________________________________________________________________________________________
