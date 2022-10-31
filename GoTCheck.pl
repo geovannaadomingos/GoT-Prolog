@@ -9,7 +9,7 @@
 % Os responsáveis pela construção do projeto são:
 % - Eduardo Dias de Oliveira Teles - edot@cin.ufpe.br
 % - Geovanna Mayra Domingos Nascimento - gmdn@cin.ufpe.br
-% - Giovanna Paula Machado Bandeira - ghcs@cin.ufpe.br
+% - Giovanna Paula Machado Bandeira - gpmb@cin.ufpe.br
 % - Gustavo de Hollanda Cavalcanti Soares - ghcs@cin.ufpe.br
 
 
@@ -393,7 +393,7 @@ brother(X, Y) :-
 aunt(X, Y) :-
 	sister(X, Z),
 	parent(Z, Y),
-	dif(X, Z).									% dif(X, Z) ensures that X is different to Z.
+	dif(X, Z).								% Dif garante que X é diferente de Z.
 
 uncle(X, Y) :-
 	brother(X, Z),
@@ -438,14 +438,19 @@ relationship(X, Y) :-
 relationship(X, Y) :-
 	nephew(X, Y).
 
+
+all_relationship(X, List) :-
+    setof(Y, relationship(X,Y), List).
+
+
 %____________________________________________________________________________________________________________________________________
 % Utilizando o predicado tell_me_about para retornar características de um personagem X:
 
 tell_me_about(X) :-
-	alive_or_dead(X),		% Utiliza o predicado alive_or_dead para retornar o status de vida(morto, vivo ou situação desconhecida) do personagem X.
-	parents(X, Parents),		% Utiliza o predicado parents para retornar uma lista Parents com os pais do persoagem X.
+	alive_or_dead(X),				% Utiliza o predicado alive_or_dead para retornar o status de vida(morto, vivo ou situação desconhecida) do personagem X.
+	parents(X, Parents),				% Utiliza o predicado parents para retornar uma lista Parents com os pais do persoagem X.
 	format("Parents: ~w", [Parents]), nl, 		% Utiliza o predicado format do prolog para retornar um texto com a lista Parents do personagem X.
-	children(X, Children),		% Utiliza o predicado children para retornar uma lista Children com os filhos do persoagem X.
+	children(X, Children),				% Utiliza o predicado children para retornar uma lista Children com os filhos do persoagem X.
 	format("Children: ~w", [Children]), nl,		% Utiliza o predicado format do prolog para retornar um texto com a lista Children do personagem X.
 	list_siblings(X, Siblings),			% Utiliza o predicado list_siblings para retornar uma lista Siblings com os irmãos do personagem X.
 	format("Siblings: ~w", [Siblings]), nl, 	% Utiliza o predicado format do prolog para retornar um texto com a lista Siblings do personagem X.
@@ -514,10 +519,10 @@ aryas_list :-
 	format("Done: ~w", [List]), nl,
 	not_dead_yet(AnotherList),
 	format("Still to go: ~w", [AnotherList]), nl,
-	length(AnotherList, LCompletedList),							% Find length of list and return it as LMainList.
+	length(AnotherList, LCompletedList),							% Acha o tamanho da lista e retorna como LMainList.
 	length(MainList, LMainList),
-	Percent is ((LMainList - LCompletedList) / LMainList) * 100,	% Maths operators.
-	Percentage is round(Percent),									% Round to the nearest integer.
+	Percent is ((LMainList - LCompletedList) / LMainList) * 100,				% Operadores matemáticos.
+	Percentage is round(Percent),									% Arredonda para o inteiro mais próximo.
 	format("Percentage complete: ~w%", [Percentage]), nl.
 
 
@@ -533,7 +538,7 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 %TAREFA 2
 % RETORNANDO A CASA DE UM PERSONAGEM X A PARTIR DO SEU SOBRENOME:
 
-house_of(X,Y) :-
+house_of(X,Y) :-				% Retorna a casa do personagem.
     X = "gendry",
     Y = "baratheon",
     !;
@@ -561,13 +566,13 @@ house_of(X,Y) :-
     return_lastname(X, Name, Lastname),
     return_house(Lastname, Y). 
 
-return_lastname(String, Name, Lastname) :-            			% Pega o nome completo do personagem e o separa em nome e sobrenome pelo "_"
-    sub_string(String, Before, _, After, "_"),
+return_lastname(String, Name, Lastname) :-            			% Pega o nome completo do personagem e o separa em nome e sobrenome pelo "_".
+    sub_string(String, Before, _, After, "_"),				
     !,
-    sub_atom(String, 0, Before, _, Name),
+    sub_atom(String, 0, Before, _, Name),			
     sub_string(String, _, After, 0, Lastname).
 
-return_house(Lastname, Y) :-
+return_house(Lastname, Y) :-					% Pega o sobrenome do personagem e retorna de qual casa ele é.
     Lastname = "stark",
     Y = "stark",
     !;
@@ -622,20 +627,20 @@ return_people(People) :-                       				% Retorna uma lista com todos
 
 return_people_by_house([], [], _X) :- 					% Retorna uma lista com todos os personagens de uma casa específica
     !.
-return_people_by_house([Head|Tall], [Head|Tall1], X) :- 
+return_people_by_house([Head|Tail], [Head|Tail1], X) :- 
     house_of(Head, Y), 
     Y = X,
     !, 
-    return_people_by_house(Tall, Tall1, X).
-return_people_by_house([_Head|Tall], Tall1, X) :- 
-    return_people_by_house(Tall, Tall1, X).
+    return_people_by_house(Tail, Tail1, X).
+return_people_by_house([_Head|Tail], Tail1, X) :- 
+    return_people_by_house(Tail, Tail1, X).
     
     
    
 power_of(X, Y) :- 					% Retorna o poder da casa a partir das funções return_people e return_people_by_house
     return_people(People), 
     return_people_by_house(People, List, X), 
-    length(List, Y).
+    length(List, Y).					% Retorna o tamanho da lista.
 
 
 %__________________________________________________________________________________________________________________________________________
@@ -643,9 +648,9 @@ power_of(X, Y) :- 					% Retorna o poder da casa a partir das funções return_p
 % RETORNANDO A INFORMAÇAO DE QUE UM PERSONAGEM X É SOLTEIRO(true) OU NAO(false)
 
 is_single(X) :-
-    findall(Y, parent(X,Y), Children), 			% Retorna uma lista Children com todos os filhos do personagem X
-    length(Children, Len),
-    Len = 0,							% Se o tamanho da lista de filhos for 0, o personagem X é solteiro
+    findall(Y, parent(X,Y), Children), 			% Retorna uma lista Children com todos os filhos do personagem X.
+    length(Children, Len),				% Acha o tamanho de Children e retorna como Len.
+    Len = 0,							% Se o tamanho da lista de filhos for 0, o personagem X é solteiro.
     Single = True.
     
     
@@ -655,33 +660,33 @@ is_single(X) :-
 
 
 return_people_relationship(X, Y, Z) :-
-    all_relationship(Y, List1),
-    ancestors(Y, List2),
-    append(List1, List2, ListY),
-    sort(ListY, NListY),
-    all_relationship(X, List4),
+    all_relationship(Y, List1),                         % Retorna uma lista (List1) com todas as relações de Y.
+    ancestors(Y, List2),				% Retorna uma lista (List2) com todos os ancestrais de Y.
+    append(List1, List2, ListY),			% Append junta duas listas (List1 e List2) em uma terceira (ListY).
+    sort(ListY, NListY),				% Sort passa por uma lista removendo possíveis duplicadas.
+    all_relationship(X, List4),	
     ancestors(X, List5),
     append(List4, List5, ListX),
     sort(ListX, NListX),
     append(NListY, NListX, ListNew),
     sort(ListNew, List),
-    length(List, LenT),
+    length(List, LenT),					% Length retorna o tamanho de uma lista.
     length(NListX, LenX),
-    Z is LenT - LenX + 1.	
+    Z is LenT - LenX + 1.				% Z é o tamanho da lista com todas as pessoas, menos o tamanho da lista dos parentes de X mais um (já que Y entra na contagem).
 
 
-diferent_sex(X,Y) :-
-    (male(X), male(Y));
-    (female(X), female(Y)).
+diferent_sex(X,Y) :-				% Verifica se X e Y são do mesmo sexo.	
+    (male(X), male(Y));				
+    (female(X), female(Y)).			
 
 can_marriage(X,Y) :-
-    not(diferent_sex(X,Y)).
+    not(diferent_sex(X,Y)).			% Verifica se X e Y são de sexos opostos. Se forem de sexos opostos retorna True.
 
 marriage_power(X, Y, Z) :-
-    is_single(X),
-    is_single(Y),
-    can_marriage(X, Y),
-    return_people_relationship(X, Y, Z).
+    is_single(X),				% Verificamos se X é solteiro.
+    is_single(Y),				% Verificamos se Y é solteiro.
+    can_marriage(X, Y),				% Verificamos se são de sexos opostos, já que se fossem do mesmo sexo não poderiam se casar.
+    return_people_relationship(X, Y, Z).	% Retornamos a quantidade de relações que Y trouxe consigo.
 
 
 
