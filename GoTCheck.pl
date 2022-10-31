@@ -3,8 +3,8 @@
 % Projeto utilizando a linguagem de programação Prolog para construir e manipular um banco de dados dos personagens da 
 % série Game of Thrones, a fim de praticar os conceitos apredidos na disciplina de Lógica para Computação do CIn UFPE.
 
-% No projeto, estão sendo considerados personagens até o fim da temporada 7, sem considerar enventos dos livros, além
-% dessa, outras informações estão descritas no README do projeto.
+% No projeto, estão sendo considerados personagens até o fim da temporada 7, sem levar em conta enventos dos livros, 
+% além dessa, outras informações estão melhor descritas no README do projeto.
 
 % Os responsáveis pela construção do projeto são:
 % - Eduardo Dias de Oliveira Teles - edot@cin.ufpe.br
@@ -302,7 +302,7 @@ status(alerie_hightower, dead).
 
 % Para descobrir aqueles que não se sabe se estão mortos ou vivos, utilizamos o predicado desta forma:
 status(X, unknown) :-
-	not(status(X, alive)),		% Utilizando o 'not', conseguimos identificar aqueles que não estão vivos e que não estão mortos
+	not(status(X, alive)),		% Utilizando o 'not', conseguimos identificar aqueles que não estão vivos e que, ao mesmo tempo, não estão mortos
 	not(status(X, dead)),
 	!.	
 	
@@ -311,8 +311,9 @@ alive_or_dead(X) :-
 	status(X, Y),
 	format("Status: ~w", [Y]), nl.	% Utiliza o predicado format do prolog para retornar o tetxo formatado contendo o status de vida do personagem X
 
+
 %______________________________________________________________________________________________________________________
-% Utilizando o predicado child para determinar o filho X(de um gênero qualquer) de um determinado Y:
+% Utilizando o predicado child para identificar o filho X(de um gênero qualquer) de um determinado Y:
 child(X, Y) :-
 	parent(Y, X).
 	
@@ -369,10 +370,11 @@ list_siblings(X, Siblings) :-
 	setof(Y, sibling(X,Y), Siblings);	% Utilizando o predicado do prolog setof para criar uma lista Siblings com todos os irmãos Y - de qualquer gênero - de um dado X, excluindo possíveis repetições 
 	Siblings = none.			% Caso nõa tenha irmãos na lista Sibligs, retorna none.
 
+% Utilizando o predicado siblings para retornar se um Y faz parte da lista de irmãos(Siblings) d eum determinado X
 siblings(X, Y) :-
 	list_siblings(X, Siblings),
-	member(Y, Siblings).			% Checks if the queried sibling is a member of the
-					% list of siblings for that person.
+	member(Y, Siblings).			% Utilizando o predicado member do prolog para verificar se Y faz parte da lista de irmãos de Y.
+
 					
 % Utilizando o predicado sister para verificar se X é irmã de Y
 sister(X, Y) :-
