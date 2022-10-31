@@ -460,11 +460,11 @@ relationship(X, Y) :-
 tell_me_about(X) :-
 	alive_or_dead(X),		% Utiliza o predicado alive_or_dead para retornar o status de vida(morto, vivo ou situação desconhecida) do personagem X.
 	parents(X, Parents),		% Utiliza o predicado parents para retornar uma lista Parents com os pais do persoagem X.
-	format("Parents: ~w", [Parents]), nl, 		% Utiliza o predicado format do prolog para retornar um texto com a lista Parents do persoagem X.
+	format("Parents: ~w", [Parents]), nl, 		% Utiliza o predicado format do prolog para retornar um texto com a lista Parents do personagem X.
 	children(X, Children),		% Utiliza o predicado children para retornar uma lista Children com os filhos do persoagem X.
-	format("Children: ~w", [Children]), nl,		% Utiliza o predicado format do prolog para retornar um texto com a lista Children do persoagem X.
-	list_siblings(X, Siblings),			% Utiliza o predicado list_siblings para retornar uma lista Siblings com os irmãos do persoagem X.
-	format("Siblings: ~w", [Siblings]), nl, 	% Utiliza o predicado format do prolog para retornar um texto com a lista Siblings do persoagem X.
+	format("Children: ~w", [Children]), nl,		% Utiliza o predicado format do prolog para retornar um texto com a lista Children do personagem X.
+	list_siblings(X, Siblings),			% Utiliza o predicado list_siblings para retornar uma lista Siblings com os irmãos do personagem X.
+	format("Siblings: ~w", [Siblings]), nl, 	% Utiliza o predicado format do prolog para retornar um texto com a lista Siblings do personagem X.
 	!.
 	
 
