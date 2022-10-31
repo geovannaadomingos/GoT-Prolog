@@ -324,7 +324,7 @@ son(X, Y) :-
 
 % Utilizando o predicado children para retornar a lista com os filhos X(de um gênero qualquer) de um determinado Y:
 children(X, Children) :-
-	setof(Y, parent(X,Y), Children),  % Utilizando a função setof para criar uma lista Children com todos os filhos X - de qualquer gênero - de um dado Y
+	setof(Y, parent(X,Y), Children),  % Utilizando o predicado do prolog setof para criar uma lista Children com todos os filhos X - de qualquer gênero - de um dado Y
 	!.
 
 children(X, Children) :-
@@ -463,16 +463,16 @@ alive_or_dead(X) :-
 
 
 %____________________________________________________________________________________________________________________________________
-% RETORNA CARACTERISTICAS GERAIS SOBRE UM PERSONAGEM
+% Utilizando o predicado tell_me_about para retornar características de um personagem X:
 
 tell_me_about(X) :-
-	alive_or_dead(X),
-	parents(X, Parents),
-	format("Parents: ~w", [Parents]), nl, 
-	children(X, Children),
-	format("Children: ~w", [Children]), nl,
-	list_siblings(X, Siblings),
-	format("Siblings: ~w", [Siblings]), nl,
+	alive_or_dead(X),		% Utiliza o predicado alive_or_dead para retornar o status de vida(morto, vivo ou situação desconhecida) do personagem X.
+	parents(X, Parents),		% Utiliza o predicado parents para retornar uma lista Parents com os pais do persoagem X.
+	format("Parents: ~w", [Parents]), nl, 		% Utiliza o predicado format do prolog para retornar um texto com a lista Parents do persoagem X.
+	children(X, Children),		% Utiliza o predicado children para retornar uma lista Children com os filhos do persoagem X.
+	format("Children: ~w", [Children]), nl,		% Utiliza o predicado format do prolog para retornar um texto com a lista Children do persoagem X.
+	list_siblings(X, Siblings),			% Utiliza o predicado list_siblings para retornar uma lista Siblings com os irmãos do persoagem X.
+	format("Siblings: ~w", [Siblings]), nl, 	% Utiliza o predicado format do prolog para retornar um texto com a lista Siblings do persoagem X.
 	!.
 	
 
