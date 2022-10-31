@@ -14,7 +14,7 @@
 
 
 %______________________________________________________________________________________________________________________
-% Utilizado o predicado parent para adicionar relação de parentesco (declarando que X é pai/mãe de um determinado Y),
+% Utilizando o predicado parent para adicionar relação de parentesco (declarando que X é pai/mãe de um determinado Y),
 % separando-os por casas(Stark, Tyrell. Targaryen, etc.)
 
 % Casa Stark
@@ -137,9 +137,10 @@ parent(stannis_baratheon, shireen_baratheon).
 parent(selyse_baratheon, shireen_baratheon).
 
 
-%_______________________________________________________________________________________________________________________
-% ADICIONANDO UM GENERO, FEMININO(female) OU MASCULINO(male), A CADA PERSONAGEM:
+%______________________________________________________________________________________________________________________
+% Utilizando os predicados male e female para determinar o gênero, entre masculino e feminino, de um personagem X:
 
+% Gênero Masculino:
 male(aegon_targaryen).
 male(aegon_V_targaryen).
 male(aeron_greyjoy).
@@ -185,6 +186,8 @@ male(tywin_lannister).
 male(unknown_father_greyjoy).
 male(viserys_targaryen).
 male(willem_lannister).
+
+% Gênero Feminino:
 female(alannys_harlaw).
 female(arya_stark).
 female(cassana_estermont).
@@ -219,8 +222,8 @@ female(yara_greyjoy).
 female(alerie_hightower).
 
 
-%______________________________________________________________________________________________________________________________________
-% ADICIONANDO A INFORMACAO SOBRE A SITUAÇAO DO PERSONAGEM(vivo, morto ou situação desconhecida):
+%______________________________________________________________________________________________________________________
+% Utilizando o predicado status para determinar se um personagem X está vivo, morto ou em situação desconhecida:
 
 status(arya_stark, alive).
 status(bran_stark, alive).
@@ -299,32 +302,32 @@ status(alerie_hightower, dead).
 
 % Para descobrir aqueles que não se sabe se estão mortos ou vivos...
 status(X, unknown) :-
-	not(status(X, alive)),						% Exemplo de 'not' query
+	not(status(X, alive)),		% Utilizando o 'not', conseguimos identificar aqueles que não estão vivos e que não estão mortos
 	not(status(X, dead)),
-	!.											%Exemplo de um corte '!' parar de retroceder
+	!.	
+	
 
-
-%______________________________________________________________________________________________________________________________________________
-% DEFINE RELAÇAO DE FILHO - usando parentesco e genero (declarando X como filho/filha/filhos de Y)
-
+%______________________________________________________________________________________________________________________
+% Utilizando o predicado child para determinar o filho(de um gêneor qualquer) X de um determinado Y:
 child(X, Y) :-
 	parent(Y, X).
-
+	
+% Utilizando o predicado child para determinar a filha X de um determinado Y:
 daughter(X, Y) :-
-	parent(Y, X),
-	female(X).
+	parent(Y, X),	
+	female(X).              % Utilizando o predicado female para selecionar os personagens do gênero feminino
 
 son(X, Y) :-
 	parent(Y, X),
-	male(X).
+	male(X).		% Utilizando o predicado male para selecionar os personagens do gênero masculino
 
 children(X, Children) :-
-	setof(Y, parent(X,Y), Children),
+	setof(Y, parent(X,Y), Children),  % Utilizando a função setof para criar uma lista Children com todos os filhos X - de qualquer gênero - de um dado Y
 	!.
 
 children(X, Children) :-
-	not(setof(Y, parent(X,Y), Children)),		% Se não estiver na lista, os filhos são desconhecidos.
-	Children = none.			 % '=' atribui pais à string 'unknown'
+	not(setof(Y, parent(X,Y), Children)),	% Caso o predicado não retorne a lista, determinamos o Children = none, isto é, os filhos como sendo desconhecidos. 
+	Children = none.			
 
 
 %_____________________________________________________________________________________________________________________________
